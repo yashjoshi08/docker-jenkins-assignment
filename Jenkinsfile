@@ -45,6 +45,17 @@ pipeline {
             }
         }
 
+        stage('Generate Traffic') {
+            steps {
+                bat '''
+                curl http://localhost
+                curl http://localhost
+                curl http://localhost
+                curl http://localhost
+                '''
+            }
+        }
+
         stage('Extract Unique IP Addresses') {
             steps {
                 bat '"C:\\Program Files\\Git\\bin\\bash.exe" scripts/extract_ips.sh'
