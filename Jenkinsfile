@@ -62,6 +62,16 @@ pipeline {
             }
         }
 
+        stage('Check AWS Env') {
+            steps {
+                bat '''
+                echo AWS_ACCESS_KEY_ID=%AWS_ACCESS_KEY_ID%
+                echo AWS_DEFAULT_REGION=%AWS_DEFAULT_REGION%
+                aws sts get-caller-identity
+                '''
+            }
+        }
+
         stage('Backup MySQL to S3') {
             steps {
                 bat '"C:\\Program Files\\Git\\bin\\bash.exe" scripts/mysql_backup.sh'
