@@ -21,6 +21,12 @@ pipeline {
             }
         }
 
+        stage('Stop Existing Containers') {
+            steps {
+                bat 'docker compose down'
+            }
+}
+
         stage('Build Docker Images') {
             steps {
                 bat 'docker compose build'
