@@ -9,15 +9,10 @@ pipeline {
             }
         }
 
-        stage('Verify Workspace') {
-            steps {
-                bat 'dir'
-            }
-        }
-
         stage('Validate Docker Compose') {
             steps {
-                bat 'docker compose config'
+                bat 'docker compose config -q'
+                echo Docker Compose configuration validated successfully.
             }
         }
 
