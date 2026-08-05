@@ -25,7 +25,7 @@ pipeline {
             steps {
                 bat 'docker compose down'
             }
-}
+        }
 
         stage('Build Docker Images') {
             steps {
@@ -42,6 +42,12 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 bat 'docker ps'
+            }
+        }
+
+        stage('Extract Unique IP Addresses') {
+            steps {
+                bat '"C:\\Program Files\\Git\\bin\\bash.exe" scripts/extract_ips.sh'
             }
         }
 
