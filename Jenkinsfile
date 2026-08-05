@@ -48,10 +48,10 @@ pipeline {
         stage('Generate Traffic') {
             steps {
                 bat '''
-                curl http://localhost
-                curl http://localhost
-                curl http://localhost
-                curl http://localhost
+                curl -s http://localhost > NUL
+                curl -s http://localhost > NUL
+                curl -s http://localhost > NUL
+                curl -s http://localhost > NUL
                 '''
             }
         }
@@ -78,12 +78,6 @@ pipeline {
             }
         }
 
-        stage('Check AWS Credentials') {
-            steps {
-                bat 'aws configure list'
-                bat 'aws sts get-caller-identity'
-            }
-        }
 
     }
 
