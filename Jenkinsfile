@@ -68,6 +68,13 @@ pipeline {
             }
         }
 
+        stage('Check AWS Credentials') {
+            steps {
+                bat 'aws configure list'
+                bat 'aws sts get-caller-identity'
+            }
+        }
+
     }
 
     post {
