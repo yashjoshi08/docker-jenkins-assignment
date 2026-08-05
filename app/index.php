@@ -12,7 +12,7 @@ $conn = new mysqli($host, $user, $password, $database);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Docker & Jenkins Assignment</title>
+    <title>Docker & Jenkins CI/CD Assignment</title>
 
     <style>
 
