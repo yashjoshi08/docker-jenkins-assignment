@@ -44,9 +44,10 @@ pipeline {
             steps {
                 bat '''
                 curl -s http://localhost > NUL
+                curl -s http://localhost/index.php > NUL
+                curl -s http://localhost/test.php > NUL
                 curl -s http://localhost > NUL
-                curl -s http://localhost > NUL
-                curl -s http://localhost > NUL
+                curl -s http://localhost/index.php > NUL 
                 '''
             }
         }
