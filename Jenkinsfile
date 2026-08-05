@@ -62,6 +62,12 @@ pipeline {
             }
         }
 
+        stage('Backup MySQL to S3') {
+            steps {
+                bat '"C:\\Program Files\\Git\\bin\\bash.exe" scripts/mysql_backup.sh'
+            }
+        }
+
     }
 
     post {
