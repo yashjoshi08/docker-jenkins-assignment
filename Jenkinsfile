@@ -65,8 +65,8 @@ pipeline {
         stage('Check AWS Env') {
             steps {
                 bat '''
-                echo AWS_ACCESS_KEY_ID=%AWS_ACCESS_KEY_ID%
-                echo AWS_DEFAULT_REGION=%AWS_DEFAULT_REGION%
+                echo AWS Credentials Loaded Successfully
+                echo Region: %AWS_DEFAULT_REGION%
                 aws sts get-caller-identity
                 '''
             }
