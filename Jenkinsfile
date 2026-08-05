@@ -12,7 +12,7 @@ pipeline {
         stage('Validate Docker Compose') {
             steps {
                 bat 'docker compose config -q'
-                echo Docker Compose configuration validated successfully.
+                echo 'Docker Compose configuration validated successfully.'
             }
         }
 
