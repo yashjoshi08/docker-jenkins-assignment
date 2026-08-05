@@ -5,46 +5,14 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Source code checked out from GitHub'
+                checkout scm
             }
         }
 
-        stage('Validate Docker Compose') {
+        stage('Verify Workspace') {
             steps {
-                bat 'docker compose config'
+                bat 'dir'
             }
-        }
-
-        stage('Build Docker Images') {
-            steps {
-                bat 'docker compose build'
-            }
-        }
-
-        stage('Deploy Containers') {
-            steps {
-                bat 'docker compose up -d'
-            }
-        }
-
-        stage('Verify Deployment') {
-            steps {
-                bat 'docker ps'
-            }
-        }
-    }
-
-    post {
-        success {
-            echo 'Deployment Successful'
-        }
-
-        failure {
-            echo 'Deployment Failed'
-        }
-
-        always {
-            echo 'Pipeline Finished'
         }
     }
 }
