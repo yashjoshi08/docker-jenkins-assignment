@@ -6,7 +6,7 @@
 
 --
 -- Table structure for table `employees`
---
+-- backup check
 
 DROP TABLE IF EXISTS `employees`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
