@@ -1,11 +1,11 @@
 pipeline {
     agent any
 
-    stages {
-
-        environment {
+    environment {
             AWS_DEFAULT_REGION = 'ap-south-1'
         }
+
+    stages {
 
         stage('Validate Docker Compose') {
             steps {
