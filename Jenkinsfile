@@ -3,10 +3,8 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
+        environment {
+            AWS_DEFAULT_REGION = 'ap-south-1'
         }
 
         stage('Validate Docker Compose') {
