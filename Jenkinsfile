@@ -9,72 +9,82 @@ pipeline {
             }
         }
 
+        stage('Verify Workspace') {
+            steps {
+                sh 'ls -la'
+            }
+        }
+
         stage('Validate Docker Compose') {
             steps {
-                bat 'docker compose config -q'
-                echo 'Docker Compose configuration validated successfully.'
+                sh 'docker compose config'
             }
         }
 
         stage('Stop Existing Containers') {
             steps {
-                bat 'docker compose down'
+                sh 'docker compose down'
             }
         }
 
         stage('Build Docker Images') {
             steps {
-                bat 'docker compose build'
+                sh 'docker compose build'
             }
         }
 
         stage('Deploy Containers') {
             steps {
-                bat 'docker compose up -d'
+                sh 'docker compose up -d'
             }
         }
 
         stage('Verify Deployment') {
             steps {
-                bat 'docker ps'
+                sh 'docker compose ps'
+                sh 'docker ps'
             }
         }
 
         stage('Generate Traffic') {
             steps {
-                bat '''
-                curl -s http://localhost > NUL
-                curl -s http://localhost/index.php > NUL
-                curl -s http://localhost/test.php > NUL
-                curl -s http://localhost > NUL
-                curl -s http://localhost/index.php > NUL 
+                sh '''
+                    curl http://localhost
+                    curl http://localhost
+                    curl http://localhost
+                    curl http://localhost
                 '''
             }
         }
 
         stage('Extract Unique IP Addresses') {
             steps {
-                bat '"C:\\Program Files\\Git\\bin\\bash.exe" scripts/extract_ips.sh'
+                sh 'bash scripts/extract_ips.sh'
             }
         }
 
         stage('Check AWS Env') {
             steps {
-                bat '''
-                echo AWS Credentials Loaded Successfully
-                echo Region: %AWS_DEFAULT_REGION%
-                aws sts get-caller-identity
+                sh '''
+                    echo "AWS Credentials Loaded Successfully"
+                    echo "Region: $AWS_DEFAULT_REGION"
+                    aws sts get-caller-identity
                 '''
             }
         }
 
         stage('Backup MySQL to S3') {
             steps {
-                bat '"C:\\Program Files\\Git\\bin\\bash.exe" scripts/mysql_backup.sh'
+                sh 'bash scripts/mysql_backup.sh'
             }
         }
 
-
+        stage('Check AWS Credentials') {
+            steps {
+                sh 'aws configure list'
+                sh 'aws sts get-caller-identity'
+            }
+        }
     }
 
     post {
@@ -91,5 +101,3 @@ pipeline {
         }
     }
 }
-
-// github webhook test
