@@ -37,6 +37,7 @@ services:
       MYSQL_PASSWORD: devops123
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - devops-network
 
