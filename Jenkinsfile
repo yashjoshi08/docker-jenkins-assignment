@@ -1,4 +1,4 @@
-pipeline {
+	pipeline {
     agent any
 
     environment {
@@ -41,16 +41,16 @@ pipeline {
             }
         }
 
-        stage('Generate Traffic') {
-            steps {
-                sh '''
-                    curl -s -o /dev/null -w "Request 1: HTTP %{http_code}\\n" http://localhost
-                    curl -s -o /dev/null -w "Request 2: HTTP %{http_code}\\n" http://localhost
-                    curl -s -o /dev/null -w "Request 3: HTTP %{http_code}\\n" http://localhost
-                    curl -s -o /dev/null -w "Request 4: HTTP %{http_code}\\n" http://localhost
-                '''
-            }
-        }
+       	stage('Generate Traffic') {
+	    steps {
+	        sh '''
+	            curl -s -o /dev/null -w "Request 1: HTTP %{http_code}\\n" http://172.31.7.190
+	            curl -s -o /dev/null -w "Request 2: HTTP %{http_code}\\n" http://172.31.7.190
+	            curl -s -o /dev/null -w "Request 3: HTTP %{http_code}\\n" http://172.31.7.190
+	            curl -s -o /dev/null -w "Request 4: HTTP %{http_code}\\n" http://172.31.7.190
+	        '''
+	    }
+	}
 
         stage('Extract Unique IPs') {
             steps {
