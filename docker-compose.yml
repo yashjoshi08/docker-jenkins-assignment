@@ -3,6 +3,7 @@ services:
   nginx:
     image: nginx:1.25
     container_name: nginx
+    restart: always
     ports:
       - "80:80"
     volumes:
@@ -18,6 +19,7 @@ services:
       context: ./php
       dockerfile: Dockerfile
     container_name: php
+    restart: always
     volumes:
       - ./app:/var/www/html
     networks:
