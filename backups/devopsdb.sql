@@ -32,4 +32,4 @@ INSERT INTO `employees` VALUES (1,'Yash','DevOps Engineer','IT',80000.00),(2,'Ra
 UNLOCK TABLES;
 
 -- Dump completed on 2026-08-05 11:55:52
--- check automatic trigger
+-- check automatic jidfotrigger
