@@ -44,10 +44,10 @@
        	stage('Generate Traffic') {
 	    steps {
 	        sh '''
-	            curl -s -o /dev/null -w "Request 1: HTTP %{http_code}\\n" http://172.31.7.190
-	            curl -s -o /dev/null -w "Request 2: HTTP %{http_code}\\n" http://172.31.7.190
-	            curl -s -o /dev/null -w "Request 3: HTTP %{http_code}\\n" http://172.31.7.190
-	            curl -s -o /dev/null -w "Request 4: HTTP %{http_code}\\n" http://172.31.7.190
+	            curl -s -o /dev/null -w "Request 1: HTTP %{http_code}\\n" http://172.31.14.114
+	            curl -s -o /dev/null -w "Request 2: HTTP %{http_code}\\n" http://172.31.14.114
+	            curl -s -o /dev/null -w "Request 3: HTTP %{http_code}\\n" http://172.31.14.114
+	            curl -s -o /dev/null -w "Request 4: HTTP %{http_code}\\n" http://172.31.14.114
 	        '''
 	    }
 	}
